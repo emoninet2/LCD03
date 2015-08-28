@@ -1,0 +1,490 @@
+
+lcd03.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         0000004c  00800100  000002be  00000332  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000002be  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .comment      00000030  00000000  00000000  0000037e  2**0
+                  CONTENTS, READONLY
+  3 .debug_aranges 00000158  00000000  00000000  000003ae  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_info   00001d95  00000000  00000000  00000506  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_abbrev 000006a5  00000000  00000000  0000229b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_line   00000555  00000000  00000000  00002940  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_frame  000002c4  00000000  00000000  00002e98  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    00000b43  00000000  00000000  0000315c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_loc    00000978  00000000  00000000  00003c9f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_ranges 00000128  00000000  00000000  00004617  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+   8:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+   c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  10:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  14:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  18:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  1c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  20:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  24:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  28:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  2c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  30:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  34:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  38:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  3c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  40:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  44:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  48:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  4c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  50:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  54:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  58:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  5c:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  60:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+  64:	0c 94 49 00 	jmp	0x92	; 0x92 <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_copy_data>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	ee eb       	ldi	r30, 0xBE	; 190
+  7c:	f2 e0       	ldi	r31, 0x02	; 2
+  7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
+  80:	05 90       	lpm	r0, Z+
+  82:	0d 92       	st	X+, r0
+  84:	ac 34       	cpi	r26, 0x4C	; 76
+  86:	b1 07       	cpc	r27, r17
+  88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
+  8a:	0e 94 f6 00 	call	0x1ec	; 0x1ec <main>
+  8e:	0c 94 5d 01 	jmp	0x2ba	; 0x2ba <_exit>
+
+00000092 <__bad_interrupt>:
+  92:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000096 <_ZN5lcd0315send_via_serialEh>:
+	lcd03_twi.wait();
+	lcd03_twi.send(0);
+	lcd03_twi.stop();
+	
+}
+void lcd03::send_via_serial(uint8_t data){}
+  96:	08 95       	ret
+
+00000098 <_ZN5lcd0312send_via_i2cEh>:
+	}
+	else if (mode == LCD03_SERIAL){
+		psend = &lcd03::send_via_serial;
+	}
+} //lcd03
+void lcd03::send_via_i2c(uint8_t data){
+  98:	ff 92       	push	r15
+  9a:	0f 93       	push	r16
+  9c:	1f 93       	push	r17
+  9e:	cf 93       	push	r28
+  a0:	df 93       	push	r29
+  a2:	8c 01       	movw	r16, r24
+  a4:	f6 2e       	mov	r15, r22
+	lcd03_twi.start();
+  a6:	ec 01       	movw	r28, r24
+  a8:	24 96       	adiw	r28, 0x04	; 4
+  aa:	ce 01       	movw	r24, r28
+  ac:	0e 94 4d 01 	call	0x29a	; 0x29a <_ZN3twi5startEv>
+	lcd03_twi.wait();
+  b0:	ce 01       	movw	r24, r28
+  b2:	0e 94 47 01 	call	0x28e	; 0x28e <_ZN3twi4waitEv>
+	lcd03_twi.send(i2c_addr);
+  b6:	f8 01       	movw	r30, r16
+  b8:	65 81       	ldd	r22, Z+5	; 0x05
+  ba:	ce 01       	movw	r24, r28
+  bc:	0e 94 55 01 	call	0x2aa	; 0x2aa <_ZN3twi4sendEh>
+	lcd03_twi.wait();
+  c0:	ce 01       	movw	r24, r28
+  c2:	0e 94 47 01 	call	0x28e	; 0x28e <_ZN3twi4waitEv>
+	lcd03_twi.send(0);
+  c6:	60 e0       	ldi	r22, 0x00	; 0
+  c8:	ce 01       	movw	r24, r28
+  ca:	0e 94 55 01 	call	0x2aa	; 0x2aa <_ZN3twi4sendEh>
+	lcd03_twi.wait();
+  ce:	ce 01       	movw	r24, r28
+  d0:	0e 94 47 01 	call	0x28e	; 0x28e <_ZN3twi4waitEv>
+	lcd03_twi.send(data);
+  d4:	6f 2d       	mov	r22, r15
+  d6:	ce 01       	movw	r24, r28
+  d8:	0e 94 55 01 	call	0x2aa	; 0x2aa <_ZN3twi4sendEh>
+	lcd03_twi.wait();
+  dc:	ce 01       	movw	r24, r28
+  de:	0e 94 47 01 	call	0x28e	; 0x28e <_ZN3twi4waitEv>
+	lcd03_twi.send(0);
+  e2:	60 e0       	ldi	r22, 0x00	; 0
+  e4:	ce 01       	movw	r24, r28
+  e6:	0e 94 55 01 	call	0x2aa	; 0x2aa <_ZN3twi4sendEh>
+	lcd03_twi.stop();
+  ea:	ce 01       	movw	r24, r28
+  ec:	0e 94 51 01 	call	0x2a2	; 0x2a2 <_ZN3twi4stopEv>
+	
+}
+  f0:	df 91       	pop	r29
+  f2:	cf 91       	pop	r28
+  f4:	1f 91       	pop	r17
+  f6:	0f 91       	pop	r16
+  f8:	ff 90       	pop	r15
+  fa:	08 95       	ret
+
+000000fc <_ZN5lcd03C1E20LCD03_COMM_MODE_ENUM15LCD03_SIZE_ENUM22LCD03_I2C_ADDRESS_ENUM>:
+
+#include "lcd03.h"
+#include "twi.h"
+
+// default constructor
+lcd03::lcd03(COMM_MODE_t mode,LCD_SIZE_t type,LCD03_I2C_ADDRESS_t addr)
+  fc:	ff 92       	push	r15
+  fe:	0f 93       	push	r16
+ 100:	1f 93       	push	r17
+ 102:	cf 93       	push	r28
+ 104:	df 93       	push	r29
+ 106:	ec 01       	movw	r28, r24
+ 108:	f6 2e       	mov	r15, r22
+ 10a:	8c 01       	movw	r16, r24
+ 10c:	0c 5f       	subi	r16, 0xFC	; 252
+ 10e:	1f 4f       	sbci	r17, 0xFF	; 255
+ 110:	c8 01       	movw	r24, r16
+ 112:	0e 94 42 01 	call	0x284	; 0x284 <_ZN3twiC1Ev>
+{
+	
+	
+	if(mode == LCD03_I2C){
+ 116:	f1 10       	cpse	r15, r1
+ 118:	0a c0       	rjmp	.+20     	; 0x12e <_ZN5lcd03C1E20LCD03_COMM_MODE_ENUM15LCD03_SIZE_ENUM22LCD03_I2C_ADDRESS_ENUM+0x32>
+		psend = &lcd03::send_via_i2c;
+ 11a:	8c e4       	ldi	r24, 0x4C	; 76
+ 11c:	90 e0       	ldi	r25, 0x00	; 0
+ 11e:	99 83       	std	Y+1, r25	; 0x01
+ 120:	88 83       	st	Y, r24
+ 122:	1b 82       	std	Y+3, r1	; 0x03
+ 124:	1a 82       	std	Y+2, r1	; 0x02
+		lcd03_twi.init();
+ 126:	c8 01       	movw	r24, r16
+ 128:	0e 94 43 01 	call	0x286	; 0x286 <_ZN3twi4initEv>
+ 12c:	09 c0       	rjmp	.+18     	; 0x140 <_ZN5lcd03C1E20LCD03_COMM_MODE_ENUM15LCD03_SIZE_ENUM22LCD03_I2C_ADDRESS_ENUM+0x44>
+	}
+	else if (mode == LCD03_SERIAL){
+ 12e:	81 e0       	ldi	r24, 0x01	; 1
+ 130:	f8 12       	cpse	r15, r24
+ 132:	06 c0       	rjmp	.+12     	; 0x140 <_ZN5lcd03C1E20LCD03_COMM_MODE_ENUM15LCD03_SIZE_ENUM22LCD03_I2C_ADDRESS_ENUM+0x44>
+		psend = &lcd03::send_via_serial;
+ 134:	8b e4       	ldi	r24, 0x4B	; 75
+ 136:	90 e0       	ldi	r25, 0x00	; 0
+ 138:	99 83       	std	Y+1, r25	; 0x01
+ 13a:	88 83       	st	Y, r24
+ 13c:	1b 82       	std	Y+3, r1	; 0x03
+ 13e:	1a 82       	std	Y+2, r1	; 0x02
+	}
+} //lcd03
+ 140:	df 91       	pop	r29
+ 142:	cf 91       	pop	r28
+ 144:	1f 91       	pop	r17
+ 146:	0f 91       	pop	r16
+ 148:	ff 90       	pop	r15
+ 14a:	08 95       	ret
+
+0000014c <_ZN5lcd0312send_commandE18LCD03_COMMAND_ENUM>:
+	lcd03_twi.send(0);
+	lcd03_twi.stop();
+	
+}
+void lcd03::send_via_serial(uint8_t data){}
+void lcd03::send_command(LCD03_COMMAND_t cmd){
+ 14c:	dc 01       	movw	r26, r24
+	(this->*psend) (cmd);
+ 14e:	12 96       	adiw	r26, 0x02	; 2
+ 150:	8d 91       	ld	r24, X+
+ 152:	9c 91       	ld	r25, X
+ 154:	13 97       	sbiw	r26, 0x03	; 3
+ 156:	80 fd       	sbrc	r24, 0
+ 158:	04 c0       	rjmp	.+8      	; 0x162 <_ZN5lcd0312send_commandE18LCD03_COMMAND_ENUM+0x16>
+ 15a:	ed 91       	ld	r30, X+
+ 15c:	fc 91       	ld	r31, X
+ 15e:	11 97       	sbiw	r26, 0x01	; 1
+ 160:	10 c0       	rjmp	.+32     	; 0x182 <_ZN5lcd0312send_commandE18LCD03_COMMAND_ENUM+0x36>
+ 162:	fc 01       	movw	r30, r24
+ 164:	f5 95       	asr	r31
+ 166:	e7 95       	ror	r30
+ 168:	ea 0f       	add	r30, r26
+ 16a:	fb 1f       	adc	r31, r27
+ 16c:	01 90       	ld	r0, Z+
+ 16e:	f0 81       	ld	r31, Z
+ 170:	e0 2d       	mov	r30, r0
+ 172:	2d 91       	ld	r18, X+
+ 174:	3c 91       	ld	r19, X
+ 176:	11 97       	sbiw	r26, 0x01	; 1
+ 178:	e2 0f       	add	r30, r18
+ 17a:	f3 1f       	adc	r31, r19
+ 17c:	01 90       	ld	r0, Z+
+ 17e:	f0 81       	ld	r31, Z
+ 180:	e0 2d       	mov	r30, r0
+ 182:	95 95       	asr	r25
+ 184:	87 95       	ror	r24
+ 186:	8a 0f       	add	r24, r26
+ 188:	9b 1f       	adc	r25, r27
+ 18a:	09 95       	icall
+ 18c:	08 95       	ret
+
+0000018e <_ZN5lcd039send_dataEh>:
+}
+void lcd03::send_data(uint8_t data){
+ 18e:	dc 01       	movw	r26, r24
+	(this->*psend) (data);
+ 190:	12 96       	adiw	r26, 0x02	; 2
+ 192:	8d 91       	ld	r24, X+
+ 194:	9c 91       	ld	r25, X
+ 196:	13 97       	sbiw	r26, 0x03	; 3
+ 198:	80 fd       	sbrc	r24, 0
+ 19a:	04 c0       	rjmp	.+8      	; 0x1a4 <_ZN5lcd039send_dataEh+0x16>
+ 19c:	ed 91       	ld	r30, X+
+ 19e:	fc 91       	ld	r31, X
+ 1a0:	11 97       	sbiw	r26, 0x01	; 1
+ 1a2:	10 c0       	rjmp	.+32     	; 0x1c4 <_ZN5lcd039send_dataEh+0x36>
+ 1a4:	fc 01       	movw	r30, r24
+ 1a6:	f5 95       	asr	r31
+ 1a8:	e7 95       	ror	r30
+ 1aa:	ea 0f       	add	r30, r26
+ 1ac:	fb 1f       	adc	r31, r27
+ 1ae:	01 90       	ld	r0, Z+
+ 1b0:	f0 81       	ld	r31, Z
+ 1b2:	e0 2d       	mov	r30, r0
+ 1b4:	2d 91       	ld	r18, X+
+ 1b6:	3c 91       	ld	r19, X
+ 1b8:	11 97       	sbiw	r26, 0x01	; 1
+ 1ba:	e2 0f       	add	r30, r18
+ 1bc:	f3 1f       	adc	r31, r19
+ 1be:	01 90       	ld	r0, Z+
+ 1c0:	f0 81       	ld	r31, Z
+ 1c2:	e0 2d       	mov	r30, r0
+ 1c4:	95 95       	asr	r25
+ 1c6:	87 95       	ror	r24
+ 1c8:	8a 0f       	add	r24, r26
+ 1ca:	9b 1f       	adc	r25, r27
+ 1cc:	09 95       	icall
+ 1ce:	08 95       	ret
+
+000001d0 <_ZN5lcd0312clear_screenEv>:
+}
+void lcd03::vertical_tab(){
+	send_command(LCD03_CMD_VERTICAL_TAB);
+}
+void lcd03::clear_screen(){
+	send_command(LCD03_CMD_CLEAR_SCREEN);
+ 1d0:	6c e0       	ldi	r22, 0x0C	; 12
+ 1d2:	0e 94 a6 00 	call	0x14c	; 0x14c <_ZN5lcd0312send_commandE18LCD03_COMMAND_ENUM>
+ 1d6:	08 95       	ret
+
+000001d8 <_ZN5lcd039backlightEb>:
+void lcd03::tab_set_size(uint8_t size){
+	send_command(LCD03_CMD_TAB_SET);
+	send_data(size);
+}
+void lcd03::backlight(bool mode){
+	if(mode) {send_command(LCD03_CMD_BACKLIGHT_ON);}
+ 1d8:	66 23       	and	r22, r22
+ 1da:	21 f0       	breq	.+8      	; 0x1e4 <_ZN5lcd039backlightEb+0xc>
+ 1dc:	63 e1       	ldi	r22, 0x13	; 19
+ 1de:	0e 94 a6 00 	call	0x14c	; 0x14c <_ZN5lcd0312send_commandE18LCD03_COMMAND_ENUM>
+ 1e2:	08 95       	ret
+	else {send_command(LCD03_CMD_BACKLIGHT_OFF);}
+ 1e4:	64 e1       	ldi	r22, 0x14	; 20
+ 1e6:	0e 94 a6 00 	call	0x14c	; 0x14c <_ZN5lcd0312send_commandE18LCD03_COMMAND_ENUM>
+ 1ea:	08 95       	ret
+
+000001ec <main>:
+#include <util/delay.h>
+#include "twi.h"
+#include "lcd03.h"
+
+int main(void)
+{
+ 1ec:	cf 93       	push	r28
+ 1ee:	df 93       	push	r29
+ 1f0:	cd b7       	in	r28, 0x3d	; 61
+ 1f2:	de b7       	in	r29, 0x3e	; 62
+ 1f4:	27 97       	sbiw	r28, 0x07	; 7
+ 1f6:	0f b6       	in	r0, 0x3f	; 63
+ 1f8:	f8 94       	cli
+ 1fa:	de bf       	out	0x3e, r29	; 62
+ 1fc:	0f be       	out	0x3f, r0	; 63
+ 1fe:	cd bf       	out	0x3d, r28	; 61
+	twi lcd03_twi;
+ 200:	ce 01       	movw	r24, r28
+ 202:	07 96       	adiw	r24, 0x07	; 7
+ 204:	0e 94 42 01 	call	0x284	; 0x284 <_ZN3twiC1Ev>
+	
+	lcd03_twi.init();
+ 208:	ce 01       	movw	r24, r28
+ 20a:	07 96       	adiw	r24, 0x07	; 7
+ 20c:	0e 94 43 01 	call	0x286	; 0x286 <_ZN3twi4initEv>
+	
+	lcd03 mylcd(LCD03_I2C,LCD03_20_4,LCD03_I2C_ADDRESS_0xc8) ;
+ 210:	28 ec       	ldi	r18, 0xC8	; 200
+ 212:	41 e0       	ldi	r20, 0x01	; 1
+ 214:	60 e0       	ldi	r22, 0x00	; 0
+ 216:	ce 01       	movw	r24, r28
+ 218:	01 96       	adiw	r24, 0x01	; 1
+ 21a:	0e 94 7e 00 	call	0xfc	; 0xfc <_ZN5lcd03C1E20LCD03_COMM_MODE_ENUM15LCD03_SIZE_ENUM22LCD03_I2C_ADDRESS_ENUM>
+	
+	mylcd.clear_screen();
+ 21e:	ce 01       	movw	r24, r28
+ 220:	01 96       	adiw	r24, 0x01	; 1
+ 222:	0e 94 e8 00 	call	0x1d0	; 0x1d0 <_ZN5lcd0312clear_screenEv>
+ 226:	00 e0       	ldi	r16, 0x00	; 0
+ 228:	11 e0       	ldi	r17, 0x01	; 1
+ 22a:	0f 2e       	mov	r0, r31
+ 22c:	f0 e5       	ldi	r31, 0x50	; 80
+ 22e:	ef 2e       	mov	r14, r31
+ 230:	f1 e0       	ldi	r31, 0x01	; 1
+ 232:	ff 2e       	mov	r15, r31
+ 234:	f0 2d       	mov	r31, r0
+	 * @param string_addr
+	 * @param len length of the string
+	 */
+	void print_string(char *strn_add, int len){
+		for(int i=0;i<len;i++){
+			send_data(*(strn_add+i));
+ 236:	f8 01       	movw	r30, r16
+ 238:	61 91       	ld	r22, Z+
+ 23a:	8f 01       	movw	r16, r30
+ 23c:	ce 01       	movw	r24, r28
+ 23e:	01 96       	adiw	r24, 0x01	; 1
+ 240:	0e 94 c7 00 	call	0x18e	; 0x18e <_ZN5lcd039send_dataEh>
+	 * print string
+	 * @param string_addr
+	 * @param len length of the string
+	 */
+	void print_string(char *strn_add, int len){
+		for(int i=0;i<len;i++){
+ 244:	0e 15       	cp	r16, r14
+ 246:	1f 05       	cpc	r17, r15
+ 248:	b1 f7       	brne	.-20     	; 0x236 <main+0x4a>
+	
+	
+    while(1)
+    {
+// 		
+			mylcd.backlight(false);
+ 24a:	60 e0       	ldi	r22, 0x00	; 0
+ 24c:	ce 01       	movw	r24, r28
+ 24e:	01 96       	adiw	r24, 0x01	; 1
+ 250:	0e 94 ec 00 	call	0x1d8	; 0x1d8 <_ZN5lcd039backlightEb>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 254:	ff ef       	ldi	r31, 0xFF	; 255
+ 256:	29 e6       	ldi	r18, 0x69	; 105
+ 258:	88 e1       	ldi	r24, 0x18	; 24
+ 25a:	f1 50       	subi	r31, 0x01	; 1
+ 25c:	20 40       	sbci	r18, 0x00	; 0
+ 25e:	80 40       	sbci	r24, 0x00	; 0
+ 260:	e1 f7       	brne	.-8      	; 0x25a <main+0x6e>
+ 262:	00 c0       	rjmp	.+0      	; 0x264 <main+0x78>
+ 264:	00 00       	nop
+			_delay_ms(1000);
+			mylcd.backlight(true);
+ 266:	61 e0       	ldi	r22, 0x01	; 1
+ 268:	ce 01       	movw	r24, r28
+ 26a:	01 96       	adiw	r24, 0x01	; 1
+ 26c:	0e 94 ec 00 	call	0x1d8	; 0x1d8 <_ZN5lcd039backlightEb>
+ 270:	9f ef       	ldi	r25, 0xFF	; 255
+ 272:	e9 e6       	ldi	r30, 0x69	; 105
+ 274:	f8 e1       	ldi	r31, 0x18	; 24
+ 276:	91 50       	subi	r25, 0x01	; 1
+ 278:	e0 40       	sbci	r30, 0x00	; 0
+ 27a:	f0 40       	sbci	r31, 0x00	; 0
+ 27c:	e1 f7       	brne	.-8      	; 0x276 <main+0x8a>
+ 27e:	00 c0       	rjmp	.+0      	; 0x280 <main+0x94>
+ 280:	00 00       	nop
+ 282:	e3 cf       	rjmp	.-58     	; 0x24a <main+0x5e>
+
+00000284 <_ZN3twiC1Ev>:
+
+
+#include "twi.h"
+
+// default constructor
+twi::twi()
+ 284:	08 95       	ret
+
+00000286 <_ZN3twi4initEv>:
+{
+} //twi
+void twi::init(){
+	TWBR = 32;
+ 286:	80 e2       	ldi	r24, 0x20	; 32
+ 288:	80 93 b8 00 	sts	0x00B8, r24
+ 28c:	08 95       	ret
+
+0000028e <_ZN3twi4waitEv>:
+}
+void twi::wait(){
+	while(!(TWCR&(1<<TWINT)));
+ 28e:	ec eb       	ldi	r30, 0xBC	; 188
+ 290:	f0 e0       	ldi	r31, 0x00	; 0
+ 292:	80 81       	ld	r24, Z
+ 294:	88 23       	and	r24, r24
+ 296:	ec f7       	brge	.-6      	; 0x292 <_ZN3twi4waitEv+0x4>
+}
+ 298:	08 95       	ret
+
+0000029a <_ZN3twi5startEv>:
+void twi::start(){
+	TWCR = (1<<TWINT) | (1<<TWEN) | (1<<TWSTA);
+ 29a:	84 ea       	ldi	r24, 0xA4	; 164
+ 29c:	80 93 bc 00 	sts	0x00BC, r24
+ 2a0:	08 95       	ret
+
+000002a2 <_ZN3twi4stopEv>:
+}
+void twi::stop(){
+	TWCR = (1<<TWINT) | (1<<TWEN) | (1<<TWSTO);
+ 2a2:	84 e9       	ldi	r24, 0x94	; 148
+ 2a4:	80 93 bc 00 	sts	0x00BC, r24
+ 2a8:	08 95       	ret
+
+000002aa <_ZN3twi4sendEh>:
+}
+void twi::send(uint8_t data){
+	TWDR = data;
+ 2aa:	60 93 bb 00 	sts	0x00BB, r22
+	TWCR = (1<<TWINT) | (1<<TWEN);
+ 2ae:	24 e8       	ldi	r18, 0x84	; 132
+ 2b0:	20 93 bc 00 	sts	0x00BC, r18
+	wait();
+ 2b4:	0e 94 47 01 	call	0x28e	; 0x28e <_ZN3twi4waitEv>
+ 2b8:	08 95       	ret
+
+000002ba <_exit>:
+ 2ba:	f8 94       	cli
+
+000002bc <__stop_program>:
+ 2bc:	ff cf       	rjmp	.-2      	; 0x2bc <__stop_program>
