@@ -8,4 +8,5 @@
 
 
 
-#define LCD03Port_STM32  1
+#define LCD03Port_STM32  0
+#define LCD03Port_mbed  1
